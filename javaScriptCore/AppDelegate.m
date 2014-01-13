@@ -7,13 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import <JavaScriptCore/JavaScriptCore.h>
+#import "MainViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    self.window.rootViewController = [[MainViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -44,6 +46,21 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+
+- (void) factorial
+{
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"test"ofType:@"js"];
+    NSString *testScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    JSContext *context = [[JSContext alloc]init];
+    [context evaluateScript:testScript];
+    
+    JSValue *function = context[@"factorial"];
+    JSValue *result = [function callWithArguments:@[@10]];
+    NSLog(@"factorial(10) = %d", [result toInt32]);
 }
 
 @end

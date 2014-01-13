@@ -19,6 +19,10 @@
 		EB012C89187A4DBD006F5EA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB012C71187A4DBD006F5EA4 /* UIKit.framework */; };
 		EB012C91187A4DBD006F5EA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB012C8F187A4DBD006F5EA4 /* InfoPlist.strings */; };
 		EB012C93187A4DBD006F5EA4 /* javaScriptCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB012C92187A4DBD006F5EA4 /* javaScriptCoreTests.m */; };
+		EB012C9D187A4DD2006F5EA4 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB012C9C187A4DD2006F5EA4 /* JavaScriptCore.framework */; };
+		EB012C9F187A4E11006F5EA4 /* test.js in Sources */ = {isa = PBXBuildFile; fileRef = EB012C9E187A4E11006F5EA4 /* test.js */; };
+		EB10707918839036008433F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB10707818839036008433F9 /* MainViewController.m */; };
+		EB59A3A2187AD858006D3672 /* test.js in Resources */ = {isa = PBXBuildFile; fileRef = EB012C9E187A4E11006F5EA4 /* test.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,11 @@
 		EB012C8E187A4DBD006F5EA4 /* javaScriptCoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "javaScriptCoreTests-Info.plist"; sourceTree = "<group>"; };
 		EB012C90187A4DBD006F5EA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EB012C92187A4DBD006F5EA4 /* javaScriptCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = javaScriptCoreTests.m; sourceTree = "<group>"; };
+		EB012C9C187A4DD2006F5EA4 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EB012C9E187A4E11006F5EA4 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
+		EB10707618838F68008433F9 /* UIButtonExport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIButtonExport.h; sourceTree = "<group>"; };
+		EB10707718839036008433F9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EB10707818839036008433F9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB012C9D187A4DD2006F5EA4 /* JavaScriptCore.framework in Frameworks */,
 				EB012C70187A4DBD006F5EA4 /* CoreGraphics.framework in Frameworks */,
 				EB012C72187A4DBD006F5EA4 /* UIKit.framework in Frameworks */,
 				EB012C6E187A4DBD006F5EA4 /* Foundation.framework in Frameworks */,
@@ -96,6 +106,7 @@
 		EB012C6C187A4DBD006F5EA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB012C9C187A4DD2006F5EA4 /* JavaScriptCore.framework */,
 				EB012C6D187A4DBD006F5EA4 /* Foundation.framework */,
 				EB012C6F187A4DBD006F5EA4 /* CoreGraphics.framework */,
 				EB012C71187A4DBD006F5EA4 /* UIKit.framework */,
@@ -107,6 +118,9 @@
 		EB012C73187A4DBD006F5EA4 /* javaScriptCore */ = {
 			isa = PBXGroup;
 			children = (
+				EB10707618838F68008433F9 /* UIButtonExport.h */,
+				EB10707718839036008433F9 /* MainViewController.h */,
+				EB10707818839036008433F9 /* MainViewController.m */,
 				EB012C7C187A4DBD006F5EA4 /* AppDelegate.h */,
 				EB012C7D187A4DBD006F5EA4 /* AppDelegate.m */,
 				EB012C7F187A4DBD006F5EA4 /* Images.xcassets */,
@@ -118,6 +132,7 @@
 		EB012C74187A4DBD006F5EA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EB012C9E187A4E11006F5EA4 /* test.js */,
 				EB012C75187A4DBD006F5EA4 /* javaScriptCore-Info.plist */,
 				EB012C76187A4DBD006F5EA4 /* InfoPlist.strings */,
 				EB012C79187A4DBD006F5EA4 /* main.m */,
@@ -219,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB59A3A2187AD858006D3672 /* test.js in Resources */,
 				EB012C78187A4DBD006F5EA4 /* InfoPlist.strings in Resources */,
 				EB012C80187A4DBD006F5EA4 /* Images.xcassets in Resources */,
 			);
@@ -239,8 +255,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB012C9F187A4E11006F5EA4 /* test.js in Sources */,
 				EB012C7E187A4DBD006F5EA4 /* AppDelegate.m in Sources */,
 				EB012C7A187A4DBD006F5EA4 /* main.m in Sources */,
+				EB10707918839036008433F9 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +459,7 @@
 				EB012C98187A4DBD006F5EA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB012C99187A4DBD006F5EA4 /* Build configuration list for PBXNativeTarget "javaScriptCoreTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +468,7 @@
 				EB012C9B187A4DBD006F5EA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
