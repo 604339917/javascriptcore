@@ -1,0 +1,10 @@
+PODS:
+  - JavaScriptBridge (0.0.2)
+
+DEPENDENCIES:
+  - JavaScriptBridge
+
+SPEC CHECKSUMS:
+  JavaScriptBridge: 31b5b1584f0f14a616f2f3ad02df9ae94ad56c64
+
+COCOAPODS: 0.29.0

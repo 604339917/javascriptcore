@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "objc/runtime.h"
 #import "UIButtonExport.h"
+#import <JavaScriptBridge/JavaScriptBridge.h>
 
 @interface MainViewController ()
 
@@ -28,38 +29,54 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	class_addProtocol([UIButton class], @protocol(UIButtonExport));
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTitle:@"Test Button" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.frame = CGRectMake(110, 50, 100, 50);
-    [button addTarget:self action:@selector(tap:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+	NSBundle *mainBundle = [NSBundle mainBundle];
+    NSString *path = [mainBundle pathForResource:@"MainViewController_viewDidLoad" ofType:@"js"];
+    NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    JSContext *context = [JSBScriptingSupport globalContext];
+    [context evaluateScript:script];
 }
 
 - (void)tap:(id)sender
 {
-    JSContext *context = [[JSContext alloc] init];
-    context[@"makeUIColor"] = ^(NSNumber *r, NSNumber *g, NSNumber *b){
-        float red = [r floatValue];
-        float green = [g floatValue];
-        float blue = [b floatValue];
-        return [UIColor colorWithRed:(red / 255.0)
-                               green:(green / 255.0)
-                                blue:(blue / 255.0)
-                               alpha:1];
-    };
+    @autoreleasepool {
+        JSContext *context = [[JSContext alloc] init];
+        context[@"makeUIColor"] = ^(NSNumber *r, NSNumber *g, NSNumber *b){
+            float red = [r floatValue];
+            float green = [g floatValue];
+            float blue = [b floatValue];
+            return [UIColor colorWithRed:(red / 255.0)
+                                   green:(green / 255.0)
+                                    blue:(blue / 255.0)
+                                   alpha:1];
+        };
+        
+        NSString *path = [[NSBundle mainBundle]pathForResource:@"test"ofType:@"js"];
+        NSString *testScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        context[@"button"] = (UIButton *)sender;
+        [context evaluateScript:testScript];
+    }
     
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"test"ofType:@"js"];
-    NSString *testScript = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    context[@"button"] = (UIButton *)sender;
-    [context evaluateScript:testScript];
+    @autoreleasepool {
+        JSContext *context = [[JSContext alloc] init];
+        context.exceptionHandler = ^(JSContext *con, JSValue *exception) {
+            NSLog(@"%@", exception);
+            con.exception = exception;
+        };
+        
+        context[@"log"] = ^() {
+            NSArray *args = [JSContext currentArguments];
+            for (id obj in args) {
+                NSLog(@"%@",obj);
+            }
+        };
+        [context evaluateScript:@"log()"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    
 }
 
 @end
